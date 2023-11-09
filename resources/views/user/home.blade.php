@@ -82,14 +82,15 @@
     <div class="row mt-5 mb-5">
         <div class="col"></div>
         <div class="col-6">
-            <form action="" method="GET">
+            <form action="{{ route('user.home') }}" method="GET">
                 @csrf
                 <div class="input-group">
-                    <input type="search" name="search" class="form-control rounded" placeholder="Cari nama buku"
+                    <input type="search" name="search" class="form-control rounded" placeholder="Cari buku"
                         aria-label="Search" aria-describedby="search-addon" />
-                    <button type="submit" class="btn btn-outline-primary">search</button>
+                    <button type="submit" class="btn btn-outline-primary"><i class="fas fa-search"></i></button>
                 </div>
             </form>
+
         </div>
         <div class="col"></div>
     </div>
@@ -120,8 +121,9 @@
         @endforeach
         {{ $data->links() }}
     </div>
+    <br>
     <!-- Footer section -->
-    <div class="bg-dark text-white mt-5">
+    <div class="bg-dark text-white mt-5 fixed-bottom">
         <div class="container p-4 text-center">
             Copyright 2023 @Atthoillah Corporation
         </div>

@@ -18,12 +18,19 @@ class LoginRegisterController extends Controller
     }
     public function userHome(Request $request) {
         $search = $request->input('search');
-
-        $data = Buku::where(function($query) use ($search){
-            $query->where('judul_buku', 'LIKE', '%' .$search. '%');
+    
+        $data = Buku::where(function($query) use ($search) {
+            $query->where('judul_buku', 'LIKE', '%' . $search . '%')
+                ->orWhere('penulis', 'LIKE', '%' . $search . '%')
+                ->orWhere('penerbit', 'LIKE', '%' . $search . '%')
+                ->orWhere('tahun_terbit', 'LIKE', '%' . $search . '%')
+                ->orWhere('deskripsi', 'LIKE', '%' . $search . '%');
         })->paginate(5);
+    
         return view('user.home', compact('data'));
     }
+    
+    
     public function adminHome(Request $request) {
          $search = $request->input('search');
 
